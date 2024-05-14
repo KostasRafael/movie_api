@@ -4,14 +4,14 @@ morgan = require('morgan');
 const app = express();
 
 
-//app.use(morgan("common"));
+app.use(morgan("common"));
 
 app.get("/movies", (req, res) => {
    res.sendFile('/movies.json', {root: __dirname});
 });
 
 app.get("/", (req, res) => {
-    res.sendFile("/log.txt", {root: __dirname});
+    res.send("This is a website about movies");
 });
 
 app.use(express.static("public"));
