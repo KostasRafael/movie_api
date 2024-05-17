@@ -1,56 +1,137 @@
 {
-    "Movies":
-    [
-        {
-            "name": "The lakehouse",
-            "released": 2006
-        },
+  "Movies": [
+    {
+      "title": "The lakehouse",
+      "released": 2006,
+      "description": "something something",
+      "genre": "something something",
+      "director": {
+        "name": "some name",
+        "bio": "some text",
+        "birt year": "some number",
+        "death year": "some number on N/A"
+       },
+      "image URL": "something something"
+    },
 
-        {
-           "name": "Good will hunting",
-           "released": 1997
-        },
+    {
+      "title": "Good will hunting",
+      "released": 1997,
+      "description": "something something",
+      "genre": "something something",
+      "director":  {
+        "name": "some name",
+      "bio": "some text",
+      "birt year": "some number",
+      "death year": "some number on N/A"
+    },
+      "image URL": "something something"
+    },
 
-        {
-            "name": "Awakenings",
-            "released": 1990
-        },
+    {
+      "title": "Awakenings",
+      "released": 1990,
+      "description": "something something",
+      "genre": "something something",
+      "director":  {
+        "name": "some name",
+      "bio": "some text",
+      "birt year": "some number",
+      "death year": "some number on N/A"
+    },
+      "image URL": "something something"
+    },
 
-        {
-            "name": "Ford v Ferrari",
-            "released": 2019
-        },
+    {
+      "title": "Ford v Ferrari",
+      "released": 2019,
+      "description": "something something",
+      "genre": "something something",
+    "director":  {
+        "name": "some name",
+    "bio": "some text",
+    "birt year": "some number",
+    "death year": "some number on N/A"
+  },
+      "image URL": "something something"
+    },
 
-        {
-            "name": "The Godfather",
-            "released": 1972
-        },
+    {
+      "title": "The Godfather",
+      "released": 1972,
+      "description": "something something",
+      "genre": "something something",
+      "director": "something something",
+      "image URL": "something something"
+    },
 
-        {
-            "name": "Scarface",
-            "released": 1983
-        },
+    {
+      "title": "Scarface",
+      "released": 1983,
+      "description": "something something",
+      "genre": "something something",
+      "director":  {
+        "name": "some name",
+      "bio": "some text",
+      "birt year": "some number",
+      "death year": "some number on N/A"
+    },
+      "image URL": "something something"
+    },
 
-        {
-            "name": 21,
-            "released": 2008
-        },
+    {
+      "title": 21,
+      "released": 2008,
+      "description": "something something",
+      "genre": "something something",
+    "director":  {
+        "name": "some name",
+    "bio": "some text",
+    "birt year": "some number",
+    "death year": "some number on N/A"
+  },
+      "image URL": "something something"
+    },
 
-        {
-            "name": "The Matrix",
-            "released": 1999
-        },
+    {
+      "title": "The Matrix",
+      "released": 1999,
+      "description": "something something",
+      "genre": "something something",
+      "director":  {"name": "some name",
+      "bio": "some text",
+      "birt year": "some number",
+      "death year": "some number on N/A"
+    },
+      "image URL": "something something"
+    },
 
-        {
-            "name": "The Lord of the Rings",
-            "released": 2001
-        },
+    {
+      "title": "The Lord of the Rings",
+      "released": 2001,
+      "description": "something something",
+      "genre": "something something",
+      "director":  {
+        "name": "some name",
+      "bio": "some text",
+      "birt year": "some number",
+      "death year": "some number on N/A"
+    },
+      "image URL": "something something"
+    },
 
-        {
-            "name": "Dumb and Dumber",
-            "released": 1994
-        }
-
-
-    ]
+    {
+      "title": "Dumb and Dumber",
+      "released": 1994,
+      "description": "something something",
+      "genre": "something something",
+      "director": {
+        "name": "some name",
+      "bio": "some text",
+      "birt year": "some number",
+      "death year": "some number on N/A"
+    },
+      "image URL": "something something"
+    }
+  ]
 }

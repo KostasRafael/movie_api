@@ -1,11 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
 </head>
+
 <body>
-    <h1>This is the documentation file</h1>
+    <table>
+        <tr>
+            <th>Business Logic</th>
+            <th>URL</th>
+            <th>HTTP Method</th>
+            <th>Request body data format</th>
+            <th>Response body data format</th>
+        </tr>
+
+        <tr>
+            <td>Get a list of movies</td>
+            <td>/movies</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about all the movies</td>
+        </tr>
+
+        <tr>
+            <td>Get data about a single movie by title</td>
+            <td>/movies/:title</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about a single movie, containing an ID, realesed, description, genre,
+                director, and image URL properties. For example: <br />
+                "id": 1, <br />
+                "title": "The lakehouse", <br />
+                "released": 2006, <br />
+                "description": "something something", <br />
+                "genre": "something something", <br />
+                "director": "something something", <br />
+                "image URL": "something something"</td>
+        </tr>
+
+        <tr>
+            <td>Get a definition of the genre of a movie</td>
+            <td>/movies/genre/:genreName</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A text document that defines the genre of the movie</td>
+        </tr>
+
+        <tr>
+            <td>Get data about the director of a movie</td>
+            <td>movies/directors/:directorName/</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about the director of a movie</td>
+        </tr>
+
+        <tr>
+            <td>User can register</td>
+            <td>/users</td>
+            <td>Post</td>
+            <td>A JSON object holding data about the user to register. For example: <br />
+                "email": "some email";
+                "username": "some name";
+                "password": "some password";
+            </td>
+            <td>A text confirming that the user has been registered</td>
+        </tr>
+
+        <tr>
+            <td>User can update their information</td>
+            <td>/users/:name</td>
+            <td>Post</td>
+            <td>None</td>
+            <td>A text confirming that the user information has been updated</td>
+        </tr>
+
+        <tr>
+            <td>User can add a movie to their list of favourite movies</td>
+            <td>/users/:id/:movieTitle</td>
+            <td>Post</td>
+            <td>None</td>
+            <td>A text confirming that the movie has been added to the favourite movies</td>
+        </tr>
+
+        <tr>
+            <td>User can delete a movie from their list of favourite movies</td>
+            <td>/users/:id/:movieTitle</td>
+            <td>Delete</td>
+            <td>None</td>
+            <td>A text confirming that the movie has been deleted from the favorite movies</td>
+        </tr>
+
+        <tr>
+            <td>User can deregister</td>
+            <td>/users/:id</td>
+            <td>Delete</td>
+            <td>None</td>
+            <td>A text confirming that the user has been deregistered</td>
+        </tr>
+
+
+
+
+
+
+    </table>
 </body>
+
 </html>
