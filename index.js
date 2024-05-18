@@ -6,7 +6,19 @@ uuid = require('uuid');
 const app = express();
 
 let users = [
+  // QUESTION
+  // Is it necessary to have some existing users in here, or could it also be empty?
+    {
+      "ID": 1,
+      "name": "Sarah",
+      "favouriteMovies": 'The lakehouse'
+    },
 
+    {
+      "ID": 2,
+      "name": "Margarita",
+      "favouriteMovies": "Dumb and Dumber"
+    }
 ];
 
 let movies = [
@@ -90,7 +102,7 @@ let movies = [
       "Name": "Francis Ford Coppola",
       "Bio": "Francis Ford Coppola graduated with a degree in drama from Hofstra University, and did graduate work at UCLA in filmmaking. He was training as assistant with filmmaker Roger Corman, working in such capacities as sound-man, dialogue director, associate producer and, eventually, director of The Haunted and the Hunted (1963), Coppola's first feature film.",
       "Birth year": "1939",
-      "Death year": "N/A"
+      "Death year": "N/A",
       "Image URL": "something something"
       }
     },
@@ -122,10 +134,10 @@ let movies = [
       },
       "Director":  {
         "Name": "Robert Luketic",
-      "Bio": "He is a director and writer, known for The Ugly Truth (2009), Killers (2010) and 21 (2008).",
-      "Birth year": 1973,
-      "Death year": "N/A"
-  },
+        "Bio":  "Robert Luketic is a director and writer, known for The Ugly Truth (2009), Killers (2010) and 21 (2008).",
+        "Birth year": 1973,
+        "Death year": "N/A"
+       },
       "Image URL": "something something"
     },
 
@@ -133,8 +145,11 @@ let movies = [
       "Title": "The Matrix",
       "Released": 1999,
       "Description": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
-      "Genre": "Action",
-      "Director":  {
+      "Genre": {
+        "Name": "Action",
+        "Description": "The action film is a film genre that predominantly features chase sequences, fights, shootouts, explosions, and stunt work."
+      },
+        "Director":  {
         "name": "Lana Wachowski",
       "Bio": "Lana Wachowski and her sister Lilly Wachowski, also known as the Wachowskis, are the duo behind such ground-breaking movies as The Matrix (1999) and Cloud Atlas (2012). ",
       "Birth year": "1965",
@@ -147,7 +162,10 @@ let movies = [
       "Title": "The Lord of the Rings",
       "Released": 2001,
       "Description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
-      "Genre": "Adventure",
+      "Genre": {
+        "Name": "Adventure",
+        "Description": "An adventure film is a form of adventure fiction, and is a genre of film. Subgenres of adventure films include swashbuckler films, pirate films, and survival films. Adventure films may also be combined with other film genres such as action, comedy, drama, fantasy, science fiction, family, horror, war, or the medium of animation."
+      },
       "Director":  {
         "Name": "Peter Jackson",
       "Bio": "Sir Peter Jackson made history with The Lord of the Rings trilogy, becoming the first person to direct three major feature films simultaneously. The Fellowship of the Ring, The Two Towers and The Return of the King were nominated for and collected a slew of awards from around the globe, with The Return of the King receiving his most impressive collection of awards.",
@@ -161,7 +179,10 @@ let movies = [
       "Title": "Dumb and Dumber",
       "Released": 1994,
       "Description": "After a woman leaves a briefcase at the airport terminal, a dumb limo driver and his dumber friend set out on a hilarious cross-country road trip to Aspen to return it.",
-      "Genre": "Comedy",
+      "Genre": {
+        "Name": "Comedy",
+        "Description": "A comedy film is a film genre that emphasizes humor. These films are designed to amuse audiences and make them laugh."
+      },
       "Director": {
         "Name": "Bobby Farrelly",
       "Bio": "After a woman leaves a briefcase at the airport terminal, a dumb limo driver and his dumber friend set out on a hilarious cross-country road trip to Aspen to return it.",
@@ -182,7 +203,7 @@ app.post('/users', (req, res) => {
     if (newUser.name) {
         newUser.id = uuid.v4();
         URLSearchParams.push(newUser);
-        res.status(201).json(newUser)
+        res.status(201).json(newUser);
     } else {
         res.status(400).send('users must have a name')
     }
@@ -222,9 +243,21 @@ app.get("/movies/directors/:directorName", (req, res) => {
     }
 })
 
+app.post('/users', (req,res) => {
+  const newUser = req.body;
+
+  if (newUser.name) {
+    newUser.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).json(newUser)
+  } else {
+    res.status(400).send('users need names')
+  }
+})
+
 app.put("/users/:id", (req, res) => {
     const { id } = req.params;
-    const i=updateUser = req.bod;
+    const updatedUser = req.bod;
     let user = users.find(user => user.id == id);
     if (user) {
         user.name = updatedUser.name;
