@@ -9,6 +9,11 @@ const uuid = require('uuid');
 const app = express();
 
 let users = [
+  {
+    "id": 1,
+    "name": "Marry",
+    "favouriteMovies": []
+  }
 ];
 
 let movies = [
@@ -187,6 +192,8 @@ let movies = [
 
 app.use(morgan("common"));
 
+app.use(bodyParser.json());
+
 
 app.get("/movies", (req, res) => {
    res.sendFile('/movies.json', {root: __dirname});
@@ -227,7 +234,7 @@ app.post('/users', (req, res) => {
 
   if (newUser.name) {
       newUser.id = uuid.v4();
-      URLSearchParams.users.push(newUser);
+      users.push(newUser);
       res.status(201).json(newUser);
   } else {
       res.status(400).send('users must have a name')
