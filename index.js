@@ -1,24 +1,14 @@
-const express = require("express"),
-morgan = require('morgan'),
-bodyParser = require('body-parser'),
-uuid = require('uuid');
+const express = require("express");
+
+const morgan = require('morgan');
+
+const bodyParser = require('body-parser');
+
+const uuid = require('uuid');
 
 const app = express();
 
 let users = [
-  // QUESTION
-  // Is it necessary to have some existing users in here, or could it also be empty?
-    {
-      "ID": 1,
-      "name": "Sarah",
-      "favouriteMovies": 'The lakehouse'
-    },
-
-    {
-      "ID": 2,
-      "name": "Margarita",
-      "favouriteMovies": "Dumb and Dumber"
-    }
 ];
 
 let movies = [
@@ -197,17 +187,6 @@ let movies = [
 
 app.use(morgan("common"));
 
-app.post('/users', (req, res) => {
-    const newUser = req.body;
-
-    if (newUser.name) {
-        newUser.id = uuid.v4();
-        URLSearchParams.push(newUser);
-        res.status(201).json(newUser);
-    } else {
-        res.status(400).send('users must have a name')
-    }
-})
 
 app.get("/movies", (req, res) => {
    res.sendFile('/movies.json', {root: __dirname});
@@ -243,21 +222,22 @@ app.get("/movies/directors/:directorName", (req, res) => {
     }
 })
 
-app.post('/users', (req,res) => {
+app.post('/users', (req, res) => {
   const newUser = req.body;
 
   if (newUser.name) {
-    newUser.id = uuid.v4();
-    users.push(newUser);
-    res.status(201).json(newUser)
+      newUser.id = uuid.v4();
+      URLSearchParams.users.push(newUser);
+      res.status(201).json(newUser);
   } else {
-    res.status(400).send('users need names')
+      res.status(400).send('users must have a name')
   }
 })
 
+
 app.put("/users/:id", (req, res) => {
     const { id } = req.params;
-    const updatedUser = req.bod;
+    const updatedUser = req.body;
     let user = users.find(user => user.id == id);
     if (user) {
         user.name = updatedUser.name;
@@ -273,7 +253,7 @@ app.post("/users/:id/:movieTitle", (req, res) => {
     let user = users.find(user => user.id == id);
     
     if (user) {
-        user.favoutiteMovies.push(movieTitle);
+        user.favouriteMovies.push(movieTitle);
         res.status(200).send(`${movieTitle} has been added to the array of the user with id: ${id}`);
     } else {
         res.status(400).send("user not found")
@@ -286,7 +266,7 @@ app.delete("/users/:id/:movieTitle", (req, res) => {
     let user = users.find(user => user.id == id);
     
     if (user) {
-        user.favoutiteMovies = user.favouriteMovies.filter(title !== movieTitle);
+        user.favouriteMovies = user.favouriteMovies.filter(title => title !== movieTitle);
         res.status(200).send(`${movieTitle} has been removed from the array of the user with id: ${id}`);
     } else {
         res.status(400).send("user not found")
