@@ -1,0 +1,12 @@
+authenticating users as they login
+
+generating a JWT for them
+
+Only authenticated users should be able to access your endpoints
+Users who have registered, and have been authenticated.
+
+apply the JWT authentication strategy to more of your endpoints
+
+each endpoint askes for a token whenever a request to it is made, whenever it gets hit by a request.
+
+passport middleware is used to generate JWTs (tokens)

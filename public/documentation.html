@@ -19,7 +19,7 @@
         </tr>
 
         <tr>
-            <td>Get a list of movies</td>
+            <td>GET all movies</td>
             <td>/movies</td>
             <td>GET</td>
             <td>None</td>
@@ -27,7 +27,7 @@
         </tr>
 
         <tr>
-            <td>Get data about a single movie by title</td>
+            <td>GET movie by title</td>
             <td>/movies/:title</td>
             <td>GET</td>
             <td>None</td>
@@ -43,7 +43,7 @@
         </tr>
 
         <tr>
-            <td>Get a definition of a genre</td>
+            <td>GET info about genre</td>
             <td>/movies/genre/:genreName</td>
             <td>GET</td>
             <td>None</td>
@@ -51,15 +51,22 @@
         </tr>
 
         <tr>
-            <td>Get data about a director</td>
-            <td>/movies/directors/:directorName/</td>
+            <td>GET directors information</td>
+            <td>/movies/directors/:directorName</td>
             <td>GET</td>
             <td>None</td>
             <td>A JSON object holding data about the director of a movie</td>
         </tr>
 
         <tr>
-            <td>Fora new user can register</td>
+            <td>GET all users</td>
+            <td>/users</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about all the users</td>
+
+        <tr>
+            <td>POST new user</td>
             <td>/users</td>
             <td>Post</td>
             <td>A JSON object holding data about the user to register. For example: <br />
@@ -71,40 +78,45 @@
         </tr>
 
         <tr>
-            <td>User can update their information(username)</td>
-            <td>/users/:id</td>
+            <td>GET a user by username</td>
+            <td>/users/:Username</td>
+            <td>Get</td>
+            <td>None</td>
+            <td>A Json object holding data about a specific user</td>
+        </tr>
+
+
+        <tr>
+            <td>UPDATE username</td>
+            <td>/users/:Username</td>
             <td>Post</td>
             <td>None</td>
             <td>A text confirming that the user information has been updated</td>
         </tr>
 
         <tr>
-            <td>User can add a movie to their list of favourite movies</td>
-            <td>/users/:id/:movieTitle</td>
+            <td>POST movies to favourite list</td>
+            <td>/users/:Username/movies</td>
             <td>Post</td>
             <td>None</td>
-            <td>A text confirming that the movie has been added to the favourite movies</td>
+            <td>A JSON object that shows the updated user</td>
         </tr>
 
         <tr>
-            <td>User can delete a movie from their list of favourite movies</td>
-            <td>/users/:id/:movieTitle</td>
+            <td>DELETE a movie from a user's list of favorites</td>
+            <td>/users/:Username/movies/:MovieID</td>
             <td>Delete</td>
             <td>None</td>
-            <td>A text confirming that the movie has been deleted from the favorite movies</td>
+            <td>A JSON object that shows the updated user</td>
         </tr>
 
         <tr>
-            <td>User can deregister</td>
-            <td>/users/:id</td>
+            <td>DELETE a user by username</td>
+            <td>/users/:Username</td>
             <td>Delete</td>
             <td>None</td>
             <td>A text confirming that the user has been deregistered</td>
         </tr>
-
-
-
-
 
 
     </table>
