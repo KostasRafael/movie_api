@@ -22,18 +22,8 @@ const cors = require('cors');
 
 const { check, validationResult } = require('express-validator');
 
-let allowedOrigins = ['http://localhost:8080'];
 
-app.use(cors({
-    origin: (origin, callback) => {
-      if(!origin) return callback(null, true);
-      if(allowedOrigins.indexOf(origin) === -1){
-        let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-        return callback(new Error(message ), false);
-      }
-      return callback(null, true);
-    }
-  }));
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -153,11 +143,22 @@ app.get('/users/:Username', passport.authenticate('jwt', {session: false}), asyn
    });
   
 //UPDATE username
-app.put("/users/:Username", passport.authenticate('jwt', {session: false}), async (req, res) => {
+app.put("/users/:Username", passport.authenticate('jwt', {session: false}), [
+check('Username', 'Username is required').isLength({min: 5}),
+check('Username', 'Username contains non alphanumeric characters - not allowed').isAlphanumeric(),
+],
+async (req, res) => {
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array()});
+    }
+
     if(req.user.Username !== req.params.Username){
         
         return res.status(400).send('Permission denied');
     }
+   
      await Users.findOneAndUpdate(
         {Username: req.params.Username},
         {
