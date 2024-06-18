@@ -181,7 +181,6 @@ app.get(
 //UPDATE username
 app.put(
   "/users/:Username",
-  passport.authenticate("jwt", { session: false }),
   [
     check("Username", "Username is required").isLength({ min: 5 }),
     check(
