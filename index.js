@@ -126,7 +126,6 @@ app.post(
     check("Password", "Password is required").not().isEmpty(),
     check("Email", "Email does not appear to be valid").isEmail(),
   ],
-  passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     let errors = validationResult(req);
 
@@ -181,6 +180,7 @@ app.get(
 //UPDATE username
 app.put(
   "/users/:Username",
+  passport.authenticate("jwt", { session: false }),
   [
     check("Username", "Username is required").isLength({ min: 5 }),
     check(
