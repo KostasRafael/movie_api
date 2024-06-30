@@ -37,25 +37,13 @@ const passport = require("passport");
 require("./passport");
 
 //GET all movies
-app.get("/movies", async (req, res) => {
-  await Movies.find()
-    .then((movies) => {
-      res.status(201).json(movies);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error: " + err);
-    });
-});
-
-//GET movie by title
 app.get(
-  "/movies/:title",
+  "/movies",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    await Movies.findOne({ Title: req.params.title })
-      .then((movie) => {
-        res.json(movie);
+    await Movies.find()
+      .then((movies) => {
+        res.status(201).json(movies);
       })
       .catch((err) => {
         console.error(err);
@@ -63,6 +51,18 @@ app.get(
       });
   }
 );
+
+//GET movie by title
+app.get("/movies/:title", async (req, res) => {
+  await Movies.findOne({ Title: req.params.title })
+    .then((movie) => {
+      res.json(movie);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
+});
 
 //GET info about genre
 app.get(
