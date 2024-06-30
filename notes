@@ -1,12 +1,5 @@
-authenticating users as they login
+The movie_api is the project that defines your endpoints and what the server should send when each enpoint is hit by a request.
+Here, our API is connected with our Atlas MongoDB database and the data that are served are served from the Atlas MongoDB database.
 
-generating a JWT for them
-
-Only authenticated users should be able to access your endpoints
-Users who have registered, and have been authenticated.
-
-apply the JWT authentication strategy to more of your endpoints
-
-each endpoint askes for a token whenever a request to it is made, whenever it gets hit by a request.
-
-passport middleware is used to generate JWTs (tokens)
+This movie_api is hosted on Heroku.
+The movie_api is hosted on Heroku in order for users to be able to use our API not only locally, but also remotely through the web.

@@ -49,16 +49,20 @@ app.get("/movies", async (req, res) => {
 });
 
 //GET movie by title
-app.get("/movies/:title", async (req, res) => {
-  await Movies.findOne({ Title: req.params.title })
-    .then((movie) => {
-      res.json(movie);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error: " + err);
-    });
-});
+app.get(
+  "/movies/:title",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    await Movies.findOne({ Title: req.params.title })
+      .then((movie) => {
+        res.json(movie);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      });
+  }
+);
 
 //GET info about genre
 app.get(
