@@ -36,6 +36,7 @@ let allowedOrigins = [
   "http://testsite.com",
   "http://localhost:1234",
   "https://myflixmoviescollection.netlify.app",
+  "http://localhost:4200",
 ];
 
 const { check, validationResult } = require("express-validator");
@@ -222,19 +223,20 @@ app.put(
     if (req.user.Username !== req.params.Username) {
       return res.status(400).send("Permission denied");
     }
-    console.log("original password", req.body.Password);
-    let hashedPassword = Users.hashPassword(req.body.Password);
-    console.log("hashed password", hashedPassword);
+
+    let updatedUserData = {
+      Username: req.body.Username,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday,
+    };
+    if (req.body.Password) {
+      updatedUserData.Password = Users.hashPassword(req.body.Password);
+    }
+
     await Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
-        $set: {
-          Username: req.body.Username,
-          Password: hashedPassword,
-          Email: req.body.Email,
-          Birthday: req.body.Birthday,
-          FavouriteMovies: req.body.FavouriteMovies,
-        },
+        $set: updatedUserData,
       },
       { new: true }
     )
