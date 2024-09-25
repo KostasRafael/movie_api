@@ -64,7 +64,9 @@ let auth = require("./auth")(app);
 const passport = require("passport");
 require("./passport");
 
-//GET all movies
+/**
+ * Get all movies
+ */
 app.get(
   "/movies",
   passport.authenticate("jwt", { session: false }),
@@ -80,7 +82,9 @@ app.get(
   }
 );
 
-//GET movie by title
+/**
+ * Get movie by title
+ */
 app.get("/movies/:title", async (req, res) => {
   await Movies.findOne({ Title: req.params.title })
     .then((movie) => {
@@ -92,7 +96,9 @@ app.get("/movies/:title", async (req, res) => {
     });
 });
 
-//GET info about genre
+/**
+ * Get movie by genre
+ */
 app.get(
   "/movies/genre/:genreName",
   passport.authenticate("jwt", { session: false }),
@@ -107,7 +113,9 @@ app.get(
   }
 );
 
-//GET directors information
+/**
+ * Get director by name
+ */
 app.get(
   "/movies/directors/:directorName",
   passport.authenticate("jwt", { session: false }),
@@ -122,7 +130,9 @@ app.get(
   }
 );
 
-// GET all users
+/**
+ * Get all users
+ */
 app.get(
   "/users",
   passport.authenticate("jwt", { session: false }),
@@ -138,7 +148,9 @@ app.get(
   }
 );
 
-//POST new user
+/**
+ * Post new user
+ */
 app.post(
   "/users",
   [
@@ -186,7 +198,9 @@ app.post(
   }
 );
 
-//GET a user by username
+/**
+ * Get user by username
+ */
 app.get(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
@@ -202,7 +216,9 @@ app.get(
   }
 );
 
-//UPDATE username
+/**
+ * Update user info
+ */
 app.put(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
@@ -250,7 +266,9 @@ app.put(
   }
 );
 
-//POST movies to favourite list
+/**
+ * Post movies to favorite list
+ */
 app.post(
   "/users/:Username/movies/:MovieID",
   passport.authenticate("jwt", { session: false }),
@@ -272,7 +290,9 @@ app.post(
   }
 );
 
-//DELETE a movie from a user's list of favorites
+/**
+ *Delete a movie from a user's list of favorites
+ */
 app.delete(
   "/users/:Username/movies/:MovieID",
   passport.authenticate("jwt", { session: false }),
@@ -294,7 +314,9 @@ app.delete(
   }
 );
 
-//DELETE a user by username
+/**
+ *DELETE a user by username
+ */
 app.delete(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
